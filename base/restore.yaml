@@ -1,0 +1,10 @@
+apiVersion: mattermost.com/v1alpha1
+kind: MattermostRestoreDB
+metadata:
+  name: mattermost-restore-db
+spec:
+  initBucketURL:
+  mattermostClustername: mattermost-prod
+  mattermostDBPassword: supersecure
+  mattermostDBUser: ""
+  restoreScecret: ""
