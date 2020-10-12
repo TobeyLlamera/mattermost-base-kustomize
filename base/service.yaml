@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mattermost-external-site
+  namespace: mattermost-prod
+  labels:
+    app: mattermost
+    v1alpha1.mattermost.com/installation: mattermost-prod
+    v1alpha1.mattermost.com/resource: mattermost-prod
+spec:    
+  ports:
+  - port: 8065
+    protocol: TCP
+    targetPort: app
+  selector:
+    app: mattermost
+    v1alpha1.mattermost.com/installation: mattermost-prod
+    v1alpha1.mattermost.com/resource: mattermost-prod
+  sessionAffinity: None
+  type: NodePort
