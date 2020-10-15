@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - base
 
-  images:
+images:
 - name: mattermost/mattermost-enterprise-edition
   newName: mattermost/mattermost-enterprise-edition
   newTag: 5.27.0
