@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
 - mattermost-deployment.yaml
 - mattermost-sa.yaml
-- namespace.yaml
