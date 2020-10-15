@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: mattermost-prod
   namespace: mattermost-prod
-spec:
-  serviceName: "mattermost-prod" 
+spec: 
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 5
