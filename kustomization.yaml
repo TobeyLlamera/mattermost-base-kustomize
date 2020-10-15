@@ -3,3 +3,8 @@ kind: Kustomization
 
 resources:
   - base
+
+  images:
+- name: mattermost/mattermost-enterprise-edition
+  newName: mattermost/mattermost-enterprise-edition
+  newTag: 5.27.0
