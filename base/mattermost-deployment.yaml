@@ -4,6 +4,7 @@ metadata:
   name: mattermost-prod
   namespace: mattermost-prod
 spec:
+  serviceName: "mattermost-prod" 
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 5
@@ -24,6 +25,7 @@ spec:
         v1alpha1.mattermost.com/installation: mattermost-prod
         v1alpha1.mattermost.com/resource: mattermost-prod
     spec:
+      serviceAccount: mattermost-prod
       containers:
       - command:
         - mattermost
