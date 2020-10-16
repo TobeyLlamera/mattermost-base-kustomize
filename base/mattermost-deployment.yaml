@@ -22,7 +22,7 @@ spec:
       serviceAccount: mattermost-prod
       containers:
       - command:
-        - mattermost
+        - mattermost-prod
         env:
         - name: MYSQL_USERNAME
           valueFrom:
