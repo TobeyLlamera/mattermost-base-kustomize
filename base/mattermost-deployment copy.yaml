@@ -111,3 +111,53 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: FallbackToLogsOnError
       dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - until curl --max-time 5 http://db-41311d-mysql-master.mattermost-prod:3306;
+          do echo waiting for mysql; sleep 5; done;
+        image: appropriate/curl:latest
+        imagePullPolicy: IfNotPresent
+        name: init-check-operator-mysql
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - /bin/sh
+        - -c
+        - mc config host add localminio http://mattermost-prod-minio-hl-svc.mattermost-prod:9000
+          $(MINIO_ACCESS_KEY) $(MINIO_SECRET_KEY) && mc mb localminio/mattermost-prod
+          -q -p
+        env:
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: accesskey
+              name: mattermost-prod-minio
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              key: secretkey
+              name: mattermost-prod-minio
+        image: minio/mc:latest
+        imagePullPolicy: IfNotPresent
+        name: create-minio-bucket
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - sh
+        - -c
+        - until curl --max-time 5 http://mattermost-prod-minio-hl-svc.mattermost-prod:9000/minio/health/ready;
+          do echo waiting for minio; sleep 5; done;
+        image: appropriate/curl:latest
+        imagePullPolicy: IfNotPresent
+        name: init-check-minio
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
