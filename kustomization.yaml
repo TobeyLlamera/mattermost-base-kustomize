@@ -6,5 +6,5 @@ resources:
 
 images:
 - name: mattermost/mattermost-enterprise-edition
-  newName: mattermost/mattermost-enterprise-edition
+  newName: cnbb-docker-local.bin.swisscom.com/swisscom/mattermost-enterprise-edition
   newTag: 5.27.0

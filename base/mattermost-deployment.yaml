@@ -35,9 +35,9 @@ spec:
               key: PASSWORD
               name: mattermost-prod-mysql-root-password
         - name: MM_SQLSETTINGS_DATASOURCEREPLICAS
-          value: $(MYSQL_USERNAME):$(MYSQL_PASSWORD)@tcp(db-41311d-mysql.mattermost-prod:3306)/mattermost?readTimeout=30s&writeTimeout=30s
+          value: $(MYSQL_USERNAME):$(MYSQL_PASSWORD)@tcp(mattermost-db-mysql.mattermost-prod:3306)/mattermost?readTimeout=30s&writeTimeout=30s
         - name: MM_CONFIG
-          value: mysql://$(MYSQL_USERNAME):$(MYSQL_PASSWORD)@tcp(db-41311d-mysql-master.mattermost-prod:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s
+          value: mysql://$(MYSQL_USERNAME):$(MYSQL_PASSWORD)@tcp(mattermost-db-mysql-master.mattermost-prod:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s
         - name: MM_FILESETTINGS_DRIVERNAME
           value: amazons3
         - name: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
