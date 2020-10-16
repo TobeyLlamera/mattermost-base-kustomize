@@ -8,9 +8,7 @@ spec:
   revisionHistoryLimit: 5
   selector:
     matchLabels:
-      app: mattermost
-      v1alpha1.mattermost.com/installation: mattermost-prod
-      v1alpha1.mattermost.com/resource: mattermost-prod
+      app: mattermost-prod
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,9 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mattermost
-        v1alpha1.mattermost.com/installation: mattermost-prod
-        v1alpha1.mattermost.com/resource: mattermost-prod
+        app: mattermost-prod
     spec:
       serviceAccount: mattermost-prod
       containers:
